@@ -1,0 +1,749 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  /* Firefox + modern Chromium scrollbar treatment.
+     Quiet enough to disappear when not in use; brand-cream when present. */
+  scrollbar-color: rgba(244, 237, 228, 0.20) transparent;
+  scrollbar-width: thin;
+  /* Caret in editable surfaces is the only place electric blue lives outside
+     of intentional brand moments. Reads as live + ours. */
+  caret-color: #2E4BFF;
+
+  /* Ambient time-of-day tokens, set by AmbientShift.tsx every 15min on
+     :root. Values here are the "day" baseline so anything reading these
+     vars without the JS layer mounted gets the static design. */
+  --ambient-tint: 12 14 22;
+  --ambient-glow: 1;
+  --ambient-haze: 0.50;
+  --ambient-warmth: 0;
+  /* Long, slow cross-fade when the phase advances. We're deliberately
+     slow here, phase shifts are infrequent, and a sluggish transition
+     keeps the change below the perception threshold for active users
+     while still completing in <2s for a session that crosses a boundary. */
+  transition: background-color 1.6s ease, color 1.6s ease;
+}
+
+html,
+body {
+  background-color: #000000;
+  color: #F4EDE4;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "ss01", "cv11";
+}
+
+/* ── Section primitives ────────────────────────────────────────────── */
+
+.section-dark {
+  background-color: #000000;
+  color: #F4EDE4;
+}
+
+.section-light {
+  background-color: #F4EDE4;
+  color: #0A0A0B;
+}
+
+/* ── Editorial helpers ─────────────────────────────────────────────── */
+
+/* Italic serif accent, the punch beat for headlines */
+.serif-italic {
+  font-family: var(--font-serif), "Instrument Serif", ui-serif, Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+/* System mono helper */
+.system-label {
+  font-family: var(--font-plex-mono), "IBM Plex Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+/* Accessibility: when `text-birdseye-electric` is used as the COLOR of a
+   `.system-label` (the small mono operational eyebrow), the brand electric
+   #2E4BFF on near-black measures 3.47:1, fails WCAG AA (4.5:1) for normal
+   text. We bump just this one combination to a brighter brand-tier blue
+   (matches `brand.400` in the palette, 5.49:1 on #000) while leaving the
+   electric token alone everywhere else. The italic-serif accent word in
+   headlines stays #2E4BFF, it's large-display text and clears the 3:1
+   threshold for large text, and switching it would weaken the brand. */
+.system-label.text-birdseye-electric,
+.system-label .text-birdseye-electric {
+  color: #5B7CFF;
+}
+/* When the eyebrow sits on cream/light surfaces, the brighter blue would
+   look washed out and #2E4BFF on cream measures 7.6:1 (already passing).
+   Keep the original token in that context. The selectors below cover the
+   two cream container patterns used in the codebase: `.section-light` and
+   the direct `bg-birdseye-cream` utility used in Testimonials etc. */
+.section-light .system-label.text-birdseye-electric,
+.section-light .system-label .text-birdseye-electric,
+.bg-birdseye-cream .system-label.text-birdseye-electric,
+.bg-birdseye-cream .system-label .text-birdseye-electric {
+  color: #2E4BFF;
+}
+
+/* ── Architectural backdrops ───────────────────────────────────────── */
+
+/* Refined dot grid, visible but elegant */
+.bg-dot-grid {
+  background-image: radial-gradient(rgba(244, 237, 228, 0.04) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.bg-dot-grid-strong {
+  background-image: radial-gradient(rgba(244, 237, 228, 0.06) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Architectural mesh, visible alignment lines */
+.bg-mesh-grid {
+  background-image:
+    linear-gradient(rgba(244, 237, 228, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(244, 237, 228, 0.035) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+/* Vertical-only ruled lines (Apple-like product page) */
+.bg-rule-vertical {
+  background-image: linear-gradient(90deg, rgba(244, 237, 228, 0.04) 1px, transparent 1px);
+  background-size: 12.5% 100%;
+}
+
+/* ── Selection ─────────────────────────────────────────────────────── */
+/* Brand-electric selection on dark surfaces. text-shadow:none kills the
+   subtle anti-aliased shadow some browsers apply to selected text. */
+
+::selection {
+  background-color: #2E4BFF;
+  color: #F4EDE4;
+  text-shadow: none;
+}
+
+/* Cream sections invert: selection still electric, type still cream so
+   the highlighted block reads as a clean brand token regardless of bg. */
+.section-light ::selection {
+  background-color: #2E4BFF;
+  color: #F4EDE4;
+  text-shadow: none;
+}
+
+/* ── Scrollbars ────────────────────────────────────────────────────── */
+/* WebKit (Safari, Chrome). The 2px transparent border + background-clip:
+   content-box trick gives the thumb visual padding so it reads as a
+   floating capsule rather than a flush bar. */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: transparent;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(244, 237, 228, 0.18);
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
+  transition: background-color 200ms ease;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(244, 237, 228, 0.34);
+  background-clip: content-box;
+}
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* On cream sections, scrollbar inverts contrast so it stays legible. */
+.section-light ::-webkit-scrollbar-thumb {
+  background-color: rgba(10, 10, 11, 0.20);
+  background-clip: content-box;
+}
+.section-light ::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(10, 10, 11, 0.36);
+  background-clip: content-box;
+}
+
+/* ── Mobile tap & touch defaults ───────────────────────────────────── */
+/* Kill the iOS/Android grey tap flash globally, replace with our own
+   active states. Also block long-press callouts on imagery and CTAs so
+   the site feels like an app, not a webpage. */
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+[role="button"],
+[role="link"] {
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+img,
+video {
+  -webkit-touch-callout: none;
+  -webkit-user-drag: none;
+}
+
+/* ── Form chrome, kill the browser, keep the brand ────────────────── */
+
+/* Caret picks up the brand electric in every editable surface. */
+input,
+textarea,
+[contenteditable="true"] {
+  caret-color: #2E4BFF;
+}
+
+/* Webkit autofill, stops the yellow box. The 9999s transition trick
+   keeps the autofill background from ever fading in over time, while
+   -webkit-text-fill-color preserves text colour (the autofill UA style
+   would otherwise force a dark colour on light background). */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #F4EDE4;
+  -webkit-box-shadow: 0 0 0 1000px #0F0F12 inset;
+  box-shadow: 0 0 0 1000px #0F0F12 inset;
+  caret-color: #2E4BFF;
+  transition: background-color 9999s ease-in-out 0s,
+    -webkit-text-fill-color 9999s ease-in-out 0s;
+}
+
+/* Number input, hide the up/down spinners. Designers never want them. */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* Search input, kill webkit's "x" cancel control. */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration,
+input[type="search"]::-webkit-search-results-button,
+input[type="search"]::-webkit-search-results-decoration {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Date / time pickers, soften the calendar icon to brand-cream tone. */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator,
+input[type="month"]::-webkit-calendar-picker-indicator,
+input[type="week"]::-webkit-calendar-picker-indicator {
+  filter: invert(0.85);
+  cursor: pointer;
+  opacity: 0.55;
+  transition: opacity 150ms ease;
+}
+input[type="date"]::-webkit-calendar-picker-indicator:hover,
+input[type="time"]::-webkit-calendar-picker-indicator:hover,
+input[type="month"]::-webkit-calendar-picker-indicator:hover,
+input[type="week"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* Textarea, vertical-only resize, lock horizontal. */
+textarea {
+  resize: vertical;
+  min-height: 48px;
+}
+
+/* Range slider, strip default, paint a thin track with brand thumb. */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 4px;
+  background: rgba(244, 237, 228, 0.10);
+  border-radius: 9999px;
+  outline: none;
+}
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #2E4BFF;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: 2px solid #F4EDE4;
+  transition: transform 150ms ease;
+}
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.1);
+}
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #2E4BFF;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: 2px solid #F4EDE4;
+}
+
+/* :user-invalid, only flash error chrome AFTER the user has typed.
+   :invalid alone fires on every empty required field on page load,
+   which feels accusatory. */
+input:user-invalid,
+textarea:user-invalid,
+select:user-invalid {
+  border-color: rgba(255, 90, 90, 0.55);
+}
+
+/* Disabled fields, single dim treatment so `opacity-50` overrides
+   are no longer needed in markup. */
+input:disabled,
+textarea:disabled,
+select:disabled,
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Placeholder, soft cream, never grey. opacity:1 normalizes Firefox. */
+::placeholder {
+  color: rgba(244, 237, 228, 0.30);
+  opacity: 1;
+}
+
+/* Custom checkbox + radio, strip native, paint with brand. Uses CSS
+   :checked + ::after to draw the check / dot rather than ship an SVG. */
+input[type="checkbox"],
+input[type="radio"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid rgba(244, 237, 228, 0.22);
+  background: #0F0F12;
+  cursor: pointer;
+  display: inline-grid;
+  place-content: center;
+  transition: border-color 150ms ease, background-color 150ms ease;
+  flex-shrink: 0;
+  margin: 0;
+}
+input[type="checkbox"] {
+  border-radius: 4px;
+}
+input[type="radio"] {
+  border-radius: 9999px;
+}
+input[type="checkbox"]:hover,
+input[type="radio"]:hover {
+  border-color: rgba(244, 237, 228, 0.40);
+}
+input[type="checkbox"]:checked,
+input[type="radio"]:checked {
+  background: #2E4BFF;
+  border-color: #2E4BFF;
+}
+input[type="checkbox"]:checked::after {
+  content: "";
+  width: 10px;
+  height: 6px;
+  border-left: 2px solid #F4EDE4;
+  border-bottom: 2px solid #F4EDE4;
+  transform: rotate(-45deg) translate(1px, -1px);
+}
+input[type="radio"]:checked::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #F4EDE4;
+}
+input[type="checkbox"]:focus-visible,
+input[type="radio"]:focus-visible {
+  outline: 2px solid #2E4BFF;
+  outline-offset: 2px;
+}
+
+/* Native <select>, hide UA chevron, draw our own with an inline SVG so
+   it inherits a brand-cream stroke. The SVG is inlined to avoid a
+   network request and keep the file portable. */
+select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6' fill='none'><path d='M1 1l4 4 4-4' stroke='%23F4EDE4' stroke-opacity='0.55' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+}
+
+/* ── Wordmark heartbeat ────────────────────────────────────────────── */
+/* The terminal-cursor blink that lives on the BIRDSEYE wordmark in nav.
+   steps(2, start) gives the hard on/off blink of a real terminal cursor
+   instead of a sine fade, much more honest to the metaphor. The cycle
+   is 1.06s so it doesn't lock-step with any UI animation duration in
+   the system; it's its own pulse. */
+
+@keyframes birdseyeCaretBlink {
+  0%, 50% { opacity: 1; }
+  50.01%, 100% { opacity: 0; }
+}
+
+.animate-caret-blink {
+  animation: birdseyeCaretBlink 1.06s steps(2, start) infinite;
+}
+
+/* ── View Transitions, soft cinematic crossfade between routes ──────
+   Triggered by Next.js 15's `experimental.viewTransition` flag, which
+   wraps each App Router navigation in document.startViewTransition().
+   These pseudo-elements only exist while a transition is mid-flight.
+   Browsers without VT support fall through silently, no JS error.
+
+   AWARD-7 polish (2026-05-03): asymmetric out / in durations + curves
+   give navigations a deliberate, authored feel. The OLD page exits
+   quickly (240ms ease-in, accelerating away) with a faint blur and
+   scale-down — feels like the page is being released. The NEW page
+   assembles slowly (380ms ease-out, decelerating into place) — feels
+   like it's being composed, not snapped in. The asymmetry is the
+   craft, not a numeric tweak.
+
+   Both pseudo-elements run concurrently. Total perceived transition:
+   ~380ms, with the first ~240ms reading as a crossfade and the final
+   ~140ms reading as the new page settling.  */
+
+::view-transition-old(root) {
+  animation: birdseyeRouteOut 240ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+::view-transition-new(root) {
+  animation: birdseyeRouteIn 380ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes birdseyeRouteOut {
+  to {
+    opacity: 0;
+    transform: translateY(-3px) scale(0.998);
+    filter: blur(2px);
+  }
+}
+@keyframes birdseyeRouteIn {
+  from {
+    opacity: 0;
+    transform: translateY(5px) scale(0.997);
+  }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Wordmark heartbeat, under reduce-motion we want it visible and
+     steady, not stuck at the blink-off keyframe. Force opacity:1. */
+  .animate-caret-blink {
+    animation: none !important;
+    opacity: 1 !important;
+  }
+
+  /* Route transitions, kill the slide, keep an instant crossfade so
+     navigations don't feel jarring without any transition at all. */
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────────
+   PRINT STYLESHEET, every page becomes a designed dossier
+   ────────────────────────────────────────────────────────────────────
+   Goals:
+   • White paper, dark ink, saves toner, reads correctly on any printer
+   • Editorial running header / footer in CSS Paged Media margin boxes:
+     BIRDSEYE_OS · page X / Y · birdseyesecurity.ca · Mississauga, ON
+   • Italic Instrument Serif accents stay italic (gorgeous on paper)
+   • Mono labels stay mono (the editorial through-line)
+   • Hide nav, footer, video, decorative SVGs, CTAs, animations
+   • PageMasthead survives, it IS the dossier filing line
+   • External-link URLs print after the link text in mono so a reader
+     on paper can still follow them
+   • Page breaks behave: no orphaned headlines, no split metric cards
+   ──────────────────────────────────────────────────────────────────── */
+
+@media print {
+  /* ── Paged media: Letter paper, generous editorial margins ───────── */
+  @page {
+    size: letter;
+    margin: 0.85in 0.65in 0.95in 0.65in;
+
+    @top-left {
+      content: "BIRDSEYE_OS";
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.22em;
+      color: #888888;
+    }
+    @top-right {
+      content: counter(page) " / " counter(pages);
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.1em;
+      color: #888888;
+    }
+    @bottom-left {
+      content: "BIRDSEYESECURITY.CA";
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.22em;
+      color: #888888;
+    }
+    @bottom-right {
+      content: "MISSISSAUGA, ONTARIO";
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 8pt;
+      letter-spacing: 0.22em;
+      color: #888888;
+    }
+  }
+
+  /* First page suppresses the running header, the dossier opens with
+     the masthead + headline only, like a printed essay's first page. */
+  @page :first {
+    @top-left { content: none; }
+    @top-right { content: none; }
+  }
+
+  /* ── Force-paper baseline ────────────────────────────────────────── */
+  html,
+  body {
+    background: #ffffff !important;
+    color: #1a1a1a !important;
+    font-size: 10.5pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: economy;
+    print-color-adjust: economy;
+  }
+
+  /* Strip every dark surface, every shadow, every gradient, paper is
+     white. Single sweep is faster than touching each component. */
+  *,
+  *::before,
+  *::after {
+    background: transparent !important;
+    color: #1a1a1a !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* The editorial italic stays electric-on-paper: a single accent ink. */
+  .text-birdseye-electric,
+  .font-serif.italic,
+  span[class*="font-serif"][class*="italic"] {
+    color: #2E4BFF !important;
+  }
+
+  /* ── What gets hidden ────────────────────────────────────────────── */
+  /* Page chrome the reader doesn't need on paper. The masthead lives
+     inside <main>, so it survives. */
+  header[class*="sticky"],
+  nav,
+  footer,
+  video,
+  iframe,
+  button,
+  [role="button"],
+  [data-cursor],
+  .no-print {
+    display: none !important;
+  }
+
+  /* Decorative ambient layers, gradient backdrops, scan rails, the
+     dot/mesh grids, are inserted as aria-hidden absolute children with
+     -z-10. Strip them so they don't print as faint noise. */
+  [aria-hidden="true"][class*="absolute"],
+  [class*="bg-mesh-grid"],
+  [class*="bg-dot-grid"],
+  [class*="bg-rule-vertical"] {
+    display: none !important;
+  }
+
+  /* SVGs that exist only for decoration. Real chart / icon SVGs that
+     belong on paper are not aria-hidden, so they survive. */
+  svg[aria-hidden="true"] {
+    display: none !important;
+  }
+
+  /* ── Type system on paper ────────────────────────────────────────── */
+  h1 {
+    font-size: 28pt;
+    line-height: 1.05;
+    margin: 0 0 14pt;
+    page-break-after: avoid;
+    color: #000000 !important;
+  }
+  h2 {
+    font-size: 18pt;
+    line-height: 1.15;
+    margin: 22pt 0 8pt;
+    page-break-after: avoid;
+    color: #000000 !important;
+  }
+  h3 {
+    font-size: 13pt;
+    line-height: 1.2;
+    margin: 16pt 0 6pt;
+    page-break-after: avoid;
+    color: #000000 !important;
+  }
+  p {
+    margin: 0 0 8pt;
+    orphans: 3;
+    widows: 3;
+  }
+  blockquote {
+    margin: 12pt 0;
+    padding-left: 14pt;
+    border-left: 1.5pt solid #cccccc;
+    font-style: italic;
+  }
+
+  /* Mono labels stay mono, the editorial through-line. */
+  .system-label,
+  .font-mono,
+  code,
+  pre {
+    font-family: "IBM Plex Mono", ui-monospace, monospace !important;
+    font-size: 9pt !important;
+    color: #555555 !important;
+  }
+
+  /* Italic-serif accent words, keep their italic + serif so the
+     hero typography survives onto paper. They're set in cream on
+     screen so we have to re-color, but the FONT is preserved. */
+  .font-serif {
+    font-family: "Instrument Serif", ui-serif, Georgia, serif !important;
+  }
+
+  /* ── PageMasthead, the dossier filing line ──────────────────────── */
+  /* Sits at the top of every printed page-set; show with a hairline
+     under it so it reads as an editorial banner. */
+  .section-dark.border-b {
+    border-bottom: 0.5pt solid #cccccc !important;
+    padding: 4pt 0 !important;
+  }
+
+  /* ── Layout: tighten section rhythm so paper isn't all whitespace ─ */
+  section {
+    padding-top: 18pt !important;
+    padding-bottom: 18pt !important;
+    page-break-inside: auto;
+  }
+
+  /* Keep small blocks together, metric cards, theses, FAQ items,
+     pricing tiers all read better unbroken. */
+  article > section,
+  [class*="grid-cols"] > div,
+  [class*="card"],
+  details {
+    page-break-inside: avoid;
+  }
+
+  /* ── External link URLs printed in mono after the link ───────────── */
+  /* Hash anchors and tel:/mailto: don't get expanded, only http(s) and
+     internal routes (which we prefix with the canonical domain). */
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 8pt;
+    color: #888888;
+    word-break: break-all;
+  }
+  a[href^="/"]:not([href="/"])::after {
+    content: " (birdseyesecurity.ca" attr(href) ")";
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 8pt;
+    color: #888888;
+    word-break: break-all;
+  }
+  /* Don't expand links inside the masthead, pricing tables, or any
+     dense list, opt-out via data-print-no-href on the wrapper. */
+  [data-print-no-href] a::after,
+  .system-label a::after,
+  .font-mono a::after {
+    content: none !important;
+  }
+
+  /* ── Imagery ─────────────────────────────────────────────────────── */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    page-break-inside: avoid;
+  }
+
+  /* ── Lists ───────────────────────────────────────────────────────── */
+  ul, ol {
+    margin: 8pt 0 8pt 18pt;
+    padding: 0;
+  }
+  li {
+    margin-bottom: 4pt;
+    page-break-inside: avoid;
+  }
+
+  /* ── Tables (Pricing, comparison) ────────────────────────────────── */
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    page-break-inside: auto;
+  }
+  th,
+  td {
+    border: 0.5pt solid #cccccc !important;
+    padding: 5pt 7pt;
+    text-align: left;
+    font-size: 9.5pt;
+  }
+  th {
+    background: #f3f3f3 !important;
+    font-weight: 600;
+  }
+  tr {
+    page-break-inside: avoid;
+  }
+
+  /* ── Helpers any component can opt into ──────────────────────────── */
+  .print-break-before { page-break-before: always; }
+  .print-break-after { page-break-after: always; }
+  .print-break-avoid { page-break-inside: avoid; }
+  .print-only { display: block !important; }
+  .screen-only { display: none !important; }
+}
+
+/* Anything tagged .print-only stays hidden on screen, the @media print
+   block above flips it visible. */
+.print-only {
+  display: none;
+}
+

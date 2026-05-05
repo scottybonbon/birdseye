@@ -1,0 +1,38 @@
+/* TEAM */
+
+  Birdseye Security Solutions
+  Mississauga, Ontario, Canada
+  Dallas · Belgrade · Bogotá
+  https://birdseyesecurity.ca
+  hello at birdseyesecurity.ca
+
+
+/* THANKS */
+
+  Bison Transport.
+  C.R. England.
+  The customers who let us watch their gates.
+
+
+/* SITE */
+
+  Last update:    2026/05/01
+  Standards:      HTML5, CSS3, RFC 9116
+  Components:     Next.js 15, React 19, TypeScript 5,
+                  Tailwind CSS 3.4, framer-motion
+  Software:       Figma, VS Code, Vercel
+  Typography:     Inter (Rasmus Andersson),
+                  Instrument Serif (Rodrigo Fuenzalida + Jeremy Mickel),
+                  IBM Plex Mono (Mike Abbink + Bold Monday for IBM)
+  Hosting:        Vercel — Edge Network
+  Made in:        Canada
+
+
+/* COLOPHON */
+
+  https://birdseyesecurity.ca/colophon
+
+
+/* MANIFESTO */
+
+  https://birdseyesecurity.ca/manifesto

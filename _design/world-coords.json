@@ -1,0 +1,408 @@
+{
+  "naOps": [
+    {
+      "name": "Mississauga, ON",
+      "x": 313.34,
+      "y": 119.35
+    },
+    {
+      "name": "Dallas, TX",
+      "x": 262.76,
+      "y": 151.69
+    }
+  ],
+  "intlOps": [
+    {
+      "name": "Belgrade",
+      "region": "EU OPS",
+      "x": 547.64,
+      "y": 115.81
+    },
+    {
+      "name": "Bogotá",
+      "region": "SA OPS",
+      "x": 308.84,
+      "y": 235.92
+    }
+  ],
+  "cities": [
+    {
+      "name": "Vancouver",
+      "x": 220.13,
+      "y": 102.65,
+      "tier": 1
+    },
+    {
+      "name": "Calgary",
+      "x": 243.41,
+      "y": 97.55,
+      "tier": 1
+    },
+    {
+      "name": "Seattle",
+      "x": 219.26,
+      "y": 107.53,
+      "tier": 1
+    },
+    {
+      "name": "Long Beach",
+      "x": 211.31,
+      "y": 148.7,
+      "tier": 1
+    },
+    {
+      "name": "Phoenix",
+      "x": 225.95,
+      "y": 149.67,
+      "tier": 1
+    },
+    {
+      "name": "Denver",
+      "x": 249.51,
+      "y": 130.8,
+      "tier": 1
+    },
+    {
+      "name": "Minneapolis",
+      "x": 282.94,
+      "y": 115.25,
+      "tier": 1
+    },
+    {
+      "name": "Chicago",
+      "x": 292.94,
+      "y": 124.43,
+      "tier": 1
+    },
+    {
+      "name": "Houston",
+      "x": 263.98,
+      "y": 160.77,
+      "tier": 1
+    },
+    {
+      "name": "Memphis",
+      "x": 281.15,
+      "y": 144.56,
+      "tier": 1
+    },
+    {
+      "name": "Atlanta",
+      "x": 293.87,
+      "y": 148.76,
+      "tier": 1
+    },
+    {
+      "name": "Miami",
+      "x": 299.31,
+      "y": 172.8,
+      "tier": 1
+    },
+    {
+      "name": "Halifax",
+      "x": 351.79,
+      "y": 116.22,
+      "tier": 1
+    },
+    {
+      "name": "Mexico City",
+      "x": 248.42,
+      "y": 191.83,
+      "tier": 1
+    },
+    {
+      "name": "San Francisco",
+      "x": 205.5,
+      "y": 136.68,
+      "tier": 2
+    },
+    {
+      "name": "Sacramento",
+      "x": 208.7,
+      "y": 134.26,
+      "tier": 2
+    },
+    {
+      "name": "Los Angeles",
+      "x": 211.48,
+      "y": 147.85,
+      "tier": 2
+    },
+    {
+      "name": "San Diego",
+      "x": 212.79,
+      "y": 151.87,
+      "tier": 2
+    },
+    {
+      "name": "Las Vegas",
+      "x": 221.25,
+      "y": 141.49,
+      "tier": 2
+    },
+    {
+      "name": "Salt Lake City",
+      "x": 234.25,
+      "y": 127.75,
+      "tier": 2
+    },
+    {
+      "name": "Portland",
+      "x": 215.28,
+      "y": 113.66,
+      "tier": 2
+    },
+    {
+      "name": "Boise",
+      "x": 227.7,
+      "y": 119.27,
+      "tier": 2
+    },
+    {
+      "name": "Albuquerque",
+      "x": 240.74,
+      "y": 144.75,
+      "tier": 2
+    },
+    {
+      "name": "El Paso",
+      "x": 238.23,
+      "y": 154.74,
+      "tier": 2
+    },
+    {
+      "name": "San Antonio",
+      "x": 256,
+      "y": 161.78,
+      "tier": 2
+    },
+    {
+      "name": "Austin",
+      "x": 258.48,
+      "y": 159.24,
+      "tier": 2
+    },
+    {
+      "name": "Oklahoma City",
+      "x": 263.28,
+      "y": 143.6,
+      "tier": 2
+    },
+    {
+      "name": "Kansas City",
+      "x": 273.73,
+      "y": 132.71,
+      "tier": 2
+    },
+    {
+      "name": "Omaha",
+      "x": 272.66,
+      "y": 126.28,
+      "tier": 2
+    },
+    {
+      "name": "Detroit",
+      "x": 304.18,
+      "y": 123.08,
+      "tier": 2
+    },
+    {
+      "name": "Cleveland",
+      "x": 306.62,
+      "y": 125.56,
+      "tier": 2
+    },
+    {
+      "name": "Indianapolis",
+      "x": 294.47,
+      "y": 130.72,
+      "tier": 2
+    },
+    {
+      "name": "Cincinnati",
+      "x": 297.82,
+      "y": 132.7,
+      "tier": 2
+    },
+    {
+      "name": "Louisville",
+      "x": 294.1,
+      "y": 135.25,
+      "tier": 2
+    },
+    {
+      "name": "Columbus",
+      "x": 302.17,
+      "y": 130.14,
+      "tier": 2
+    },
+    {
+      "name": "Milwaukee",
+      "x": 293.42,
+      "y": 120.98,
+      "tier": 2
+    },
+    {
+      "name": "St. Louis",
+      "x": 283.78,
+      "y": 134.13,
+      "tier": 2
+    },
+    {
+      "name": "Nashville",
+      "x": 289.9,
+      "y": 141.51,
+      "tier": 2
+    },
+    {
+      "name": "Birmingham",
+      "x": 287.8,
+      "y": 149.46,
+      "tier": 2
+    },
+    {
+      "name": "Charlotte",
+      "x": 303.58,
+      "y": 144.32,
+      "tier": 2
+    },
+    {
+      "name": "Raleigh",
+      "x": 309.34,
+      "y": 142.66,
+      "tier": 2
+    },
+    {
+      "name": "Jacksonville",
+      "x": 298.27,
+      "y": 159.04,
+      "tier": 2
+    },
+    {
+      "name": "Tampa",
+      "x": 294.85,
+      "y": 166.21,
+      "tier": 2
+    },
+    {
+      "name": "Orlando",
+      "x": 297.87,
+      "y": 164.45,
+      "tier": 2
+    },
+    {
+      "name": "New Orleans",
+      "x": 277.22,
+      "y": 160.19,
+      "tier": 2
+    },
+    {
+      "name": "Boston",
+      "x": 332.47,
+      "y": 123,
+      "tier": 2
+    },
+    {
+      "name": "Hartford",
+      "x": 328.16,
+      "y": 124.77,
+      "tier": 2
+    },
+    {
+      "name": "New York",
+      "x": 324.19,
+      "y": 127.9,
+      "tier": 2
+    },
+    {
+      "name": "Newark",
+      "x": 323.82,
+      "y": 127.83,
+      "tier": 2
+    },
+    {
+      "name": "Philadelphia",
+      "x": 320.84,
+      "y": 130.17,
+      "tier": 2
+    },
+    {
+      "name": "Baltimore",
+      "x": 316.86,
+      "y": 132.14,
+      "tier": 2
+    },
+    {
+      "name": "Washington, DC",
+      "x": 315.55,
+      "y": 133.29,
+      "tier": 2
+    },
+    {
+      "name": "Pittsburgh",
+      "x": 309.73,
+      "y": 128.71,
+      "tier": 2
+    },
+    {
+      "name": "Buffalo",
+      "x": 314.5,
+      "y": 121.43,
+      "tier": 2
+    },
+    {
+      "name": "Toronto",
+      "x": 314.01,
+      "y": 119.16,
+      "tier": 2
+    },
+    {
+      "name": "Hamilton",
+      "x": 312.5,
+      "y": 120.34,
+      "tier": 2
+    },
+    {
+      "name": "Ottawa",
+      "x": 324.23,
+      "y": 113.94,
+      "tier": 2
+    },
+    {
+      "name": "Montréal",
+      "x": 329.25,
+      "y": 113.7,
+      "tier": 2
+    },
+    {
+      "name": "Québec City",
+      "x": 335.87,
+      "y": 109.85,
+      "tier": 2
+    },
+    {
+      "name": "Winnipeg",
+      "x": 279.98,
+      "y": 100.87,
+      "tier": 2
+    },
+    {
+      "name": "Edmonton",
+      "x": 248.71,
+      "y": 90.4,
+      "tier": 2
+    },
+    {
+      "name": "Saskatoon",
+      "x": 261.7,
+      "y": 94.36,
+      "tier": 2
+    },
+    {
+      "name": "Victoria",
+      "x": 218.19,
+      "y": 105.13,
+      "tier": 2
+    }
+  ]
+}
