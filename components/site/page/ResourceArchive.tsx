@@ -57,8 +57,8 @@ export async function ResourceArchive({
     // When empty, the filter UI hides entirely.
     const topics = getPostTopics(p);
     return {
-      title: stripHtml(p.title.rendered),
-      description: stripHtml(p.excerpt.rendered).slice(0, 180),
+      title: stripHtml(p.title?.rendered ?? ""),
+      description: stripHtml(p.excerpt?.rendered ?? "").slice(0, 180),
       meta: formatMeta(type, p.date),
       href: `${routePrefix}/${p.slug}`,
       // Raw ISO date is forwarded so the listing controls inside

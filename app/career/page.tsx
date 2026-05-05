@@ -36,8 +36,8 @@ export default async function CareerPage() {
   const roles: CareerCard[] = items.map((p) => {
     const m = getCareerMeta(p);
     return {
-      title: stripHtml(p.title.rendered),
-      description: stripHtml(p.excerpt.rendered).slice(0, 200),
+      title: stripHtml(p.title?.rendered ?? ""),
+      description: stripHtml(p.excerpt?.rendered ?? "").slice(0, 200),
       href: `/career/${p.slug}`,
       dateIso: p.date,
       department: m.department,

@@ -13,8 +13,8 @@ export async function generateMetadata({
   const post = await getResource("career", slug);
   if (!post) return { title: "Career, Birdseye" };
   return {
-    title: `${stripHtml(post.title.rendered)}, Birdseye Careers`,
-    description: stripHtml(post.excerpt.rendered).slice(0, 160),
+    title: `${stripHtml(post.title?.rendered ?? "")}, Birdseye Careers`,
+    description: stripHtml(post.excerpt?.rendered ?? "").slice(0, 160),
   };
 }
 

@@ -23,7 +23,7 @@ export async function ResourceDetail({
   const post = await getResource(type, slug);
   if (!post) notFound();
 
-  const title = stripHtml(post.title.rendered);
+  const title = stripHtml(post.title?.rendered ?? "");
   const meta = formatMeta(type, post.date);
   const featured = post._embedded?.["wp:featuredmedia"]?.[0];
 
@@ -63,7 +63,7 @@ export async function ResourceDetail({
 
           {/* Body */}
           <div className="mt-12 md:mt-16">
-            <WpArticleBody html={post.content.rendered} />
+            <WpArticleBody html={post.content?.rendered ?? ""} />
           </div>
 
           {/* Footer link back */}

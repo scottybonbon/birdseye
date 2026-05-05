@@ -12,8 +12,8 @@ export async function generateMetadata({
   const { slug } = await params;
   const post = await getResource("blog", slug);
   if (!post) return { title: "Article, Birdseye" };
-  const title = stripHtml(post.title.rendered);
-  const description = stripHtml(post.excerpt.rendered).slice(0, 160);
+  const title = stripHtml(post.title?.rendered ?? "");
+  const description = stripHtml(post.excerpt?.rendered ?? "").slice(0, 160);
   return {
     title: `${title}, Birdseye`,
     description,
