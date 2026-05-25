@@ -1,0 +1,620 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Director / VP of Engineering · Birdseye</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Spline+Sans+Mono:wght@500;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+  @page {
+    size: letter;
+    margin: 0.72in 0.85in 0.72in 0.85in;
+  }
+
+  :root {
+    --cream: #F4EDE4;
+    --paper: #FBF6EE;
+    --ink: #18181B;
+    --ink-soft: #3A3A3F;
+    --ink-mute: #6E6E78;
+    --electric: #2E4BFF;
+    --rule: rgba(24,24,27,0.14);
+    --rule-soft: rgba(24,24,27,0.08);
+  }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    font-size: 9.5pt;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .mono {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .spline {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.012em;
+  }
+
+  .electric { color: var(--electric); }
+  .ink-soft { color: var(--ink-soft); }
+  .ink-mute { color: var(--ink-mute); }
+
+  h1.title {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30pt;
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: var(--ink);
+  }
+  p.standfirst {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11pt;
+    line-height: 1.4;
+    letter-spacing: -0.008em;
+    color: var(--ink-soft);
+    margin: 14pt 0 0 0;
+    max-width: 4.8in;
+  }
+
+  .issue { margin-bottom: 14pt; }
+
+  /* Founder letter */
+  .letter p {
+    margin: 0 0 6pt 0;
+    color: var(--ink);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+  .dropchar {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 30pt;
+    line-height: 0.9;
+    color: var(--electric);
+    margin-right: 3pt;
+    vertical-align: -7pt;
+  }
+  strong.accent {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+
+  /* Beliefs */
+  .belief { margin: 10pt 0 0 0; }
+  .belief h2 {
+    margin: 0 0 3pt 0;
+    font-size: 12pt;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: -0.012em;
+    color: var(--ink);
+  }
+  .belief h2 .accent {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--electric);
+    letter-spacing: -0.018em;
+  }
+  .belief p {
+    margin: 0 0 3pt 0;
+    color: var(--ink-soft);
+    line-height: 1.48;
+    font-size: 9pt;
+  }
+
+  /* Sign-off */
+  .signoff {
+    margin-top: 18pt;
+    padding-top: 12pt;
+    border-top: 1px solid var(--rule);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .signoff .name {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 15pt;
+    line-height: 1.05;
+    letter-spacing: -0.018em;
+    color: var(--ink);
+  }
+  .signoff .title-line { margin-top: 4pt; }
+
+  hr.section-break {
+    border: 0;
+    border-top: 2px solid var(--ink);
+    margin: 22pt 0 0 0;
+  }
+  .chapter-label {
+    margin: 14pt 0 18pt 0;
+    color: var(--electric);
+  }
+
+  /* Numbered chapters */
+  .thesis {
+    display: flex;
+    gap: 18pt;
+    margin: 12pt 0 0 0;
+    padding-top: 10pt;
+    border-top: 1px solid var(--rule);
+    page-break-inside: avoid;
+  }
+  .thesis .num {
+    color: var(--electric);
+    min-width: 0.55in;
+    padding-top: 3pt;
+  }
+  .thesis .body { flex: 1; }
+  .thesis h3 {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 13pt;
+    line-height: 1.18;
+    margin: 0 0 5pt 0;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+  }
+  .thesis p {
+    margin: 0;
+    color: var(--ink-soft);
+    line-height: 1.5;
+    font-size: 9.5pt;
+  }
+
+  /* Must-haves */
+  .req {
+    display: flex;
+    gap: 18pt;
+    padding: 9pt 0;
+    border-bottom: 1px solid var(--rule-soft);
+    page-break-inside: avoid;
+  }
+  .req .num {
+    color: var(--electric);
+    min-width: 0.45in;
+    padding-top: 3pt;
+  }
+  .req .rule {
+    color: var(--ink);
+    font-weight: 600;
+    font-size: 9.5pt;
+    margin: 0 0 3pt 0;
+    line-height: 1.35;
+  }
+  .req .reason {
+    color: var(--ink-soft);
+    font-size: 9pt;
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* Preference rows */
+  .pref {
+    display: flex;
+    gap: 18pt;
+    padding: 8pt 0;
+    page-break-inside: avoid;
+  }
+  .pref .label {
+    min-width: 1.55in;
+    color: var(--ink);
+    padding-top: 2pt;
+  }
+  .pref p {
+    margin: 0;
+    color: var(--ink-soft);
+    font-size: 9pt;
+    line-height: 1.5;
+    flex: 1;
+  }
+
+  .footer-rule {
+    border-top: 1px solid var(--rule);
+    margin-top: 18pt;
+    padding-top: 8pt;
+    color: var(--ink-mute);
+  }
+
+  /* What-great questions */
+  .questions {
+    counter-reset: q;
+    padding: 0;
+    margin: 14pt 0 0 0;
+    list-style: none;
+  }
+  .questions li {
+    counter-increment: q;
+    padding: 8pt 0;
+    border-bottom: 1px solid var(--rule-soft);
+    display: flex;
+    gap: 18pt;
+    page-break-inside: avoid;
+  }
+  .questions li::before {
+    content: "0" counter(q);
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--electric);
+    font-size: 7.5pt;
+    letter-spacing: 0.18em;
+    min-width: 0.45in;
+    padding-top: 5pt;
+  }
+  .questions li p {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10.5pt;
+    line-height: 1.35;
+    letter-spacing: -0.012em;
+    margin: 0;
+    color: var(--ink);
+  }
+
+  .isnt-for p {
+    margin: 0 0 7pt 0;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    font-size: 9.5pt;
+  }
+
+  .logistics { margin: 14pt 0 0 0; }
+
+  .apply {
+    margin-top: 16pt;
+    padding: 14pt 16pt;
+    border: 1.5pt solid var(--ink);
+    border-radius: 6pt;
+    background: var(--cream);
+  }
+  .apply h3 {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 14pt;
+    margin: 0 0 6pt 0;
+    color: var(--ink);
+    letter-spacing: -0.018em;
+  }
+  .apply p {
+    margin: 0 0 8pt 0;
+    color: var(--ink-soft);
+    font-size: 9.5pt;
+    line-height: 1.5;
+  }
+  .apply .route {
+    display: flex;
+    gap: 6pt;
+    align-items: baseline;
+    font-size: 9pt;
+    margin: 4pt 0;
+  }
+  .apply .route .label {
+    font-family: 'IBM Plex Mono', monospace;
+    color: var(--electric);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-size: 7.5pt;
+    min-width: 0.9in;
+  }
+
+  .closing-pull {
+    font-family: 'Spline Sans Mono', ui-monospace, monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 10.5pt;
+    line-height: 1.4;
+    letter-spacing: -0.008em;
+    color: var(--ink);
+    margin: 8pt 0 0 0;
+    padding: 8pt 0 0 0;
+    border-top: 1px solid var(--rule-soft);
+  }
+</style>
+</head>
+<body>
+
+<div class="issue">
+  <span class="mono electric">Open role · Toronto · May 2026</span>
+</div>
+
+<h1 class="title">Director or VP of Engineering.</h1>
+<p class="standfirst">A note from Mike on the engineering leader we’re hiring, and the platform we’re handing them.</p>
+
+<div class="letter" style="margin-top: 22pt;">
+  <p><span class="dropchar">B</span>irdseye runs the gates on some of the busiest yards in North America. Bison Transport. C.R. England. About four hundred of us, across four operations floors in Mississauga, Dallas, Belgrade, and Bogotá. Twelve million gate events a month.</p>
+
+  <p>The platform underneath this is the operating system for the yard. Cameras, sensors, AI on every stream, TMS and WMS integrations, agentic decisioning, an operator console, and an audit trail that holds up in court. It is a real product, and it is at the point where the next chapter has to be designed by someone who has done it before.</p>
+
+  <p>I’m writing this myself because I want the right person to read it from me. We are hiring a Director or VP of Engineering to own this platform end-to-end. Not to manage it. To <strong class="accent">own</strong> it. To come in with a clear point of view of what visionary work looks like in this category, and to push hard against me, against the team, against the inertia of operating at scale, to bring that vision to life.</p>
+
+  <p>I want autonomy, control, and intention. Autonomy, because the platform is theirs to set the direction for. Control, because they will own the system and the team that builds it. Intention, because every architectural decision in the next twelve months will compound for a decade.</p>
+
+  <p>The career arc I want: developer first, engineering manager second, director or VP third. Technical credibility before management credibility. The hand still needs to know where the code lives.</p>
+
+  <p>AI-native, not AI-curious. We use AI inside the product and inside how we build the product. The difference between a leader who has changed how a team writes, reviews, and ships code, and one who has experimented personally with Copilot, is the difference between us hiring and us not hiring.</p>
+</div>
+
+<div class="belief">
+  <h2>Built a <span class="accent">product</span>, not delivered a project.</h2>
+  <p>We are not running a delivery shop. The leader I want has lived inside a product business. Recurring revenue. Customers who can leave. A platform that has to keep earning the right to exist every quarter.</p>
+</div>
+
+<div class="belief">
+  <h2>AI is a <span class="accent">multiplier</span>, not a substitute.</h2>
+  <p>A sloppy team with AI ships sloppier code, faster. A rigorous team with AI does the work of three. Tell us what changed in your team’s workflow, what you measured, what you kept. Not slides. Receipts.</p>
+</div>
+
+<div class="belief">
+  <h2>The bar is hands-on <span class="accent">credibility</span>.</h2>
+  <p>Not a role for someone who has not opened a pull request in five years. If the senior engineers don’t walk out of the first architecture review thinking <strong class="accent">finally</strong>, we picked wrong.</p>
+</div>
+
+<p class="closing-pull">If you have built and operated a real platform, and you want the next decade of yard infrastructure to have your fingerprints on it, we should talk.</p>
+
+<div class="signoff">
+  <div>
+    <div class="name">Mike Grabovica</div>
+    <div class="mono ink-mute title-line">Founder &amp; CEO · Birdseye</div>
+  </div>
+  <div class="mono ink-mute">Mississauga, Ontario · May 2026</div>
+</div>
+
+<hr class="section-break" />
+<div class="mono chapter-label">THE ROLE IN DETAIL</div>
+
+<div class="thesis">
+  <div class="num mono">01</div>
+  <div class="body">
+    <h3>Platform architecture.</h3>
+    <p>Own the technical direction for the entire stack. Gate automation, site configuration, customer workflows, integrations, the data layer, the operator console, the AI pipeline that pre-processes every stream. Make the decisions the company will still be glad we made in 2030.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">02</div>
+  <div class="body">
+    <h3>Engineering execution.</h3>
+    <p>Build a predictable delivery system. Clear ownership. Real planning. Real risk management. Move us off heroes and onto a process that scales without sacrificing the speed that got us here.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">03</div>
+  <div class="body">
+    <h3>Team leadership.</h3>
+    <p>Manage and upgrade the engineering team. Coach managers and senior engineers. Create accountability without destabilizing the people who have carried the platform this far. Hire the next wave.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">04</div>
+  <div class="body">
+    <h3>An AI-native development system.</h3>
+    <p>Make AI-native coding part of the operating model. Not a side experiment. Define the tools, practices, review standards, guardrails. Measure the lift. Push the team somewhere the rest of the industry will catch up to in two years.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">05</div>
+  <div class="body">
+    <h3>Production reliability.</h3>
+    <p>Own reliability, observability, incident review, and operational readiness for a platform where the customer’s freight depends on us being right. Reliability is a culture. The leader sets it.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">06</div>
+  <div class="body">
+    <h3>Scaling the platform.</h3>
+    <p>Support a much larger customer base, many more sites, higher event volume, complex integrations, and the hybrid cloud and data-center reality of operating on customer-owned infrastructure. The next 10x is not optional.</p>
+  </div>
+</div>
+
+<div class="thesis">
+  <div class="num mono">07</div>
+  <div class="body">
+    <h3>Business alignment.</h3>
+    <p>Connect engineering decisions to adoption, gross margin, implementation velocity, customer reliability, and long-term product leverage. Engineering is a profit center if it is led like one.</p>
+  </div>
+</div>
+
+<hr style="border:0;border-top:2px solid var(--ink);margin:22pt 0 0 0;" />
+<div class="mono chapter-label">WHAT GREAT LOOKS LIKE</div>
+<p class="ink-soft" style="margin:0;font-size:9.5pt;line-height:1.5;max-width:5.4in;">A great candidate walks into a working session in month two and answers these without notes. With a point of view specific to this platform that they will defend.</p>
+
+<ol class="questions">
+  <li><p>How should our platform scale technically over the next twelve months?</p></li>
+  <li><p>Where are the hidden risks in reliability, integrations, data flow, and team structure?</p></li>
+  <li><p>How do we make engineering measurably faster using AI-native coding?</p></li>
+  <li><p>How do we reduce the platform’s dependency on individual heroes?</p></li>
+  <li><p>How do we make the team more predictable without making it slower?</p></li>
+  <li><p>How do we connect architecture to adoption, margin, and customer success?</p></li>
+</ol>
+
+<hr style="border:0;border-top:2px solid var(--ink);margin:22pt 0 0 0;" />
+<div class="mono chapter-label">THE BAR</div>
+<p class="ink-soft" style="margin:0 0 6pt 0;font-size:9.5pt;line-height:1.5;max-width:5.4in;">Each line is a hard requirement with the reason attached. The reason matters as much as the rule.</p>
+
+<div class="req">
+  <div class="num mono">01</div>
+  <div>
+    <p class="rule">Ten-plus years in software engineering.</p>
+    <p class="reason">The platform has architectural decisions that pre-date most of the team. We need a leader who recognizes the patterns and the smells without needing them explained.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">02</div>
+  <div>
+    <p class="rule">Five-plus years in engineering management.</p>
+    <p class="reason">Run managers, not just engineers. Coaching the layer below you is a different muscle than being individually productive.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">03</div>
+  <div>
+    <p class="rule">Developer to Engineering Manager to Director or VP.</p>
+    <p class="reason">The hand still needs to know where the code lives. We don’t hire people whose first technical job was managing technical people.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">04</div>
+  <div>
+    <p class="rule">Built and operated a recurring-revenue product platform.</p>
+    <p class="reason">B2B SaaS or subscription. A business where the customer can leave. We need the discipline that comes from earning the renewal.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">05</div>
+  <div>
+    <p class="rule">Hands-on cloud-native architecture experience.</p>
+    <p class="reason">AWS, GCP, or Oracle Cloud (Azure acceptable). We will ask you to whiteboard a real piece of our infrastructure on day one of the loop.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">06</div>
+  <div>
+    <p class="rule">Web-scale client/server, distributed systems, microservices.</p>
+    <p class="reason">High-availability production. You don’t need to be a streaming-video specialist, but you need to have shipped at scale.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">07</div>
+  <div>
+    <p class="rule">AI-native coding, implemented with a team.</p>
+    <p class="reason">Not a personal Copilot subscription. Tell us what changed in your team’s workflow, what you measured, what broke, what you kept.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">08</div>
+  <div>
+    <p class="rule">Operated systems where uptime and reliability mattered.</p>
+    <p class="reason">We’re not asking if your dashboard had four nines. We’re asking what happened the night it didn’t.</p>
+  </div>
+</div>
+
+<div class="req">
+  <div class="num mono">09</div>
+  <div>
+    <p class="rule">Turned a founder-led or hero-driven team into a scalable organization.</p>
+    <p class="reason">We are mid-transition. We need a leader who has lived the same transition before and knows its timing.</p>
+  </div>
+</div>
+
+<hr style="border:0;border-top:2px solid var(--ink);margin:22pt 0 0 0;" />
+<div class="mono chapter-label">STRONG PREFERENCES</div>
+<p class="ink-soft" style="margin:0;font-size:9.5pt;line-height:1.5;">Not required. A real advantage. The kind of background that earns a longer conversation on day one.</p>
+
+<div class="logistics">
+  <div class="pref">
+    <div class="label mono">Toronto / GTA</div>
+    <p>Strongly preferred. Most of the platform team and most of the leadership is here.</p>
+  </div>
+  <div class="pref">
+    <div class="label mono">Big Tech + Startup</div>
+    <p>Big Tech standards, startup velocity. People who have lived both sides of that calibration consistently outperform those who have only lived one.</p>
+  </div>
+  <div class="pref">
+    <div class="label mono">Video streaming</div>
+    <p>Camera-to-cloud, WebRTC, RTSP, HLS, low-latency delivery, multi-tenant video platforms, edge-to-cloud pipelines, observability at scale.</p>
+  </div>
+  <div class="pref">
+    <div class="label mono">Computer vision</div>
+    <p>Video analytics, object detection, edge or cloud-based CV systems. Especially CV taken from prototype to production with paying customers.</p>
+  </div>
+  <div class="pref">
+    <div class="label mono">Hybrid cloud / DC</div>
+    <p>Cloud and on-prem at the same time. Connectivity, networking, latency, secure connectivity. We operate on customer-owned infrastructure.</p>
+  </div>
+  <div class="pref">
+    <div class="label mono">Adjacent domains</div>
+    <p>Logistics, IoT, security, infrastructure, workflow automation, multi-site operations.</p>
+  </div>
+</div>
+
+<hr style="border:0;border-top:2px solid var(--ink);margin:22pt 0 0 0;" />
+<div class="mono chapter-label">WHO THIS ISN’T FOR</div>
+<p class="ink-soft" style="margin:0 0 10pt 0;font-size:9.5pt;line-height:1.5;max-width:5.4in;">Said plainly so nobody spends a month in a loop they were never going to win.</p>
+
+<div class="isnt-for">
+  <p>Not for a leader whose primary career has been inside a bank, a government agency, or a large institution where operating tempo is set by an org chart rather than by customers.</p>
+  <p>Not for a consulting or agency leader whose success has been measured by delivery against a contract rather than the long-term health of a platform.</p>
+  <p>Not for a pure people manager, no matter how senior. We need a leader who can still go deep technically when the team needs it.</p>
+  <p>Not for an AI tourist. We will ask, in detail, and we will know the difference.</p>
+</div>
+
+<hr style="border:0;border-top:2px solid var(--ink);margin:22pt 0 0 0;" />
+<div class="mono chapter-label">LOGISTICS</div>
+
+<div class="pref">
+  <div class="label mono">Location</div>
+  <p>Greater Toronto Area strongly preferred. Hybrid, with regular time in our Mississauga office.</p>
+</div>
+<div class="pref">
+  <div class="label mono">Reports to</div>
+  <p>Mike Grabovica, Founder &amp; CEO. Partners closely with the CTO and operations leadership.</p>
+</div>
+<div class="pref">
+  <div class="label mono">Compensation</div>
+  <p>Competitive for a Toronto-based senior engineering leader. Cash, meaningful equity, full benefits.</p>
+</div>
+<div class="pref">
+  <div class="label mono">Hiring process</div>
+  <p>Four conversations over two to three weeks. A first call with Mike. A working session with platform leadership on a real architectural problem. A team-fit set. A final conversation with the executive team.</p>
+</div>
+<div class="pref">
+  <div class="label mono">Start date</div>
+  <p>Flexible. Preference for Q3 2026.</p>
+</div>
+
+<div class="apply">
+  <h3>Apply.</h3>
+  <p>Send your résumé and a short note on the most consequential platform decision you have made in the last five years. Not the most successful. The most consequential.</p>
+  <div class="route">
+    <span class="label">Write directly</span>
+    <span>hello@birdseyesecurity.ca</span>
+  </div>
+  <div class="route">
+    <span class="label">Via ATS</span>
+    <span>birdseyeaccount.bamboohr.com/careers</span>
+  </div>
+  <div class="route">
+    <span class="label">Read on web</span>
+    <span>birdseyesecurity.com/role/vp-engineering</span>
+  </div>
+</div>
+
+<div class="mono footer-rule">Birdseye Security Solutions · 6358 Viscount Road, Mississauga, Ontario · May 2026</div>
+
+</body>
+</html>

@@ -101,6 +101,17 @@ const config: Config = {
           "Times New Roman",
           "serif",
         ],
+        // Spline Sans Mono — technical accent. Bold weight only.
+        // Used in builder-audience pages (e.g. engineering recruiting)
+        // as the headline-tier accent in place of italic-serif.
+        spline: [
+          "var(--font-spline)",
+          "Spline Sans Mono",
+          "ui-monospace",
+          "SFMono-Regular",
+          "Menlo",
+          "monospace",
+        ],
       },
 
       fontSize: {

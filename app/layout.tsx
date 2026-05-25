@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
+import { Inter, IBM_Plex_Mono, Instrument_Serif, Spline_Sans_Mono } from "next/font/google";
 import { CustomCursor } from "@/components/site/CustomCursor";
 import { BrandEntry } from "@/components/site/BrandEntry";
 import { AmbientShift } from "@/components/site/AmbientShift";
@@ -39,6 +39,19 @@ const instrumentSerif = Instrument_Serif({
   display: "swap",
   weight: ["400"],
   style: ["normal", "italic"],
+});
+
+// Spline Sans Mono, the technical accent. Substitutes the italic-serif
+// role in pages targeted at builders (e.g. the engineering recruiting
+// page) where a humanist monospace reads more in-register than literary
+// italic. Bold (700) is reserved for shout moments — hero accents,
+// section headings, named pull quotes. Regular (400) does standfirst /
+// label work where Bold UC would read as a wall.
+const splineMono = Spline_Sans_Mono({
+  subsets: ["latin"],
+  variable: "--font-spline",
+  display: "swap",
+  weight: ["400", "700"],
 });
 
 export const metadata: Metadata = {
@@ -96,7 +109,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${plexMono.variable} ${instrumentSerif.variable}`}>
+    <html lang="en" className={`${inter.variable} ${plexMono.variable} ${instrumentSerif.variable} ${splineMono.variable}`}>
       {/* suppressHydrationWarning on <body>: silences a known false
           positive caused by browser extensions (Grammarly in particular,
           via `data-new-gr-c-s-check-loaded` / `data-gr-ext-installed`)

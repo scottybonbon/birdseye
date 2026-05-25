@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { PageShell } from "@/components/site/PageShell";
 import { PageHero } from "@/components/site/page/PageHero";
 import {
@@ -58,6 +59,44 @@ export default async function CareerPage() {
         tagline="Engineering, operations, security, and growth, across Canada and the US."
         description="Birdseye is hiring across every team. If you care about modernizing how the physical world runs, we want to hear from you."
       />
+
+      {/* Feature role — leadership-tier opening above the standard
+          listings grid. The VP Engineering hire is the most important
+          one of 2026, so it gets its own editorial page at
+          /role/vp-engineering and a deliberate masthead callout here
+          rather than living inside the WP-driven listings list. */}
+      <section className="section-dark border-t border-birdseye-cream/[0.06]">
+        <div className="max-w-site mx-auto px-6 md:px-8 py-16 md:py-20">
+          <Link
+            href="/role/vp-engineering"
+            className="group block rounded-3xl border border-birdseye-cream/[0.12] hover:border-birdseye-electric/40 transition-colors p-8 md:p-12"
+          >
+            <div className="grid lg:grid-cols-[1fr_auto] gap-y-8 gap-x-12 items-end">
+              <div className="max-w-[680px]">
+                <div className="font-mono text-[11px] tracking-[0.22em] uppercase text-birdseye-electric mb-5">
+                  Featured · Leadership · Toronto
+                </div>
+                <h2 className="text-[clamp(2rem,3.6vw,3rem)] leading-[1.05] tracking-[-0.02em] font-bold text-birdseye-cream text-balance">
+                  Director or VP of{" "}
+                  <span className="font-serif italic font-normal text-birdseye-electric">
+                    Engineering
+                  </span>
+                  .
+                </h2>
+                <p className="mt-5 text-[17px] md:text-[18px] leading-[1.6] text-birdseye-cream/65 max-w-[560px]">
+                  A founder letter from Mike on the engineering leader
+                  we’re hiring to own the platform end-to-end, and the
+                  platform we’re handing them.
+                </p>
+              </div>
+              <div className="inline-flex items-center gap-2 font-mono text-[12px] tracking-[0.18em] uppercase text-birdseye-cream/70 group-hover:text-birdseye-electric transition-colors">
+                Read the letter
+                <span aria-hidden>→</span>
+              </div>
+            </div>
+          </Link>
+        </div>
+      </section>
 
       {/* Where we are, dot-globe with the four city pins */}
       <TeamGlobe />
